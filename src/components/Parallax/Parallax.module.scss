@@ -13,24 +13,28 @@
 
 .cloud {
   position: absolute;
-  left: 12.31%;
-  bottom: 39.22%;
+  left: 12%;
+  bottom: 39%;
 }
 
 .cloudBig {
   position: absolute;
-  left: 49.86%;
+  left: 49%;
   top: -3%;
 }
 
 .pokeBall {
   position: absolute;
-  top: 24.38%;
-  right: -12%;
+  top: 16%;
+  right: -20%;
+
+  img {
+    width: 80%;
+  }
 }
 
 .pikachu {
   position: absolute;
   top: 0%;
-  left: 4.11%;
+  left: -7%;
 }
