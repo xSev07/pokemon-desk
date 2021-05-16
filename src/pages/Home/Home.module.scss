@@ -1,0 +1,26 @@
+@import '../../variables';
+
+.root {
+  min-height: 100vh;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
+
+.contentWrap {
+  display: flex;
+  padding-top: 128px;
+}
+
+.heading {
+  margin-bottom: 32px;
+}
+
+.desc {
+  margin-bottom: 48px;
+
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.contentParallax {
+  color: inherit;
+}
