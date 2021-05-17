@@ -1,0 +1,51 @@
+@import '../../variables';
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px 9px;
+  height: 66px;
+
+  border: none;
+  border-radius: 11px;
+  box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
+
+  cursor: pointer;
+  outline: none;
+
+  font-style: normal;
+  font-weight: bold;
+  color: $dark;
+
+  &:active {
+    padding-bottom: 6px;
+    box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.18);
+  }
+}
+
+.yellow {
+  background: $button-secondary;
+}
+
+.green {
+  background: $button-primary;
+}
+
+.fullsize {
+  width: 100%;
+}
+
+.normalsize {
+  width: 231px;
+}
+
+.normal {
+  font-size: 23px;
+  line-height: 27px;
+}
+
+.small {
+  font-size: 17px;
+  line-height: 20px;
+}

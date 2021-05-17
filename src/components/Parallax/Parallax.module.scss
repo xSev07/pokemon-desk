@@ -1,0 +1,40 @@
+.root {
+  width: 793px;
+  height: 680px;
+  position: relative;
+  margin-right: -159px;
+}
+
+.smallPokeBall {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+}
+
+.cloud {
+  position: absolute;
+  left: 12%;
+  bottom: 39%;
+}
+
+.cloudBig {
+  position: absolute;
+  left: 49%;
+  top: -3%;
+}
+
+.pokeBall {
+  position: absolute;
+  top: 16%;
+  right: -20%;
+
+  img {
+    width: 80%;
+  }
+}
+
+.pikachu {
+  position: absolute;
+  top: 0%;
+  left: -7%;
+}
