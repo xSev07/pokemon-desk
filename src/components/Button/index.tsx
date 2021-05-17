@@ -19,6 +19,7 @@ export enum Size {
 }
 
 interface ButtonProps {
+  className?: string;
   width?: Width;
   color?: Color;
   size?: Size;
