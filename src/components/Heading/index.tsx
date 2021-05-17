@@ -24,7 +24,7 @@ const Heading: React.FC<HeadingProps> = (props) => {
     ...otherProps,
     className: cn(style[type], otherProps.className),
   };
-  return React.createElement(`${type}`, extendedProps, children);
+  return React.createElement(type, extendedProps, children);
 };
 
 export default Heading;

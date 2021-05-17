@@ -27,14 +27,14 @@ const Parallax = () => {
       <div
         className={style.smallPokeBall}
         style={{
-          transform: `translate(${screenY * 0.01}px,${screenX * 0.01}px)`,
+          transform: `translate(${screenY * 0.01}px,${screenX * 0.02}px)`,
         }}>
         <img src={SmallPokeBallPng} alt="Small PokeBall" />
       </div>
       <div
         className={style.cloud}
         style={{
-          transform: `translate(${screenY * 0.01}px,${screenX * 0.01}px)`,
+          transform: `translate(${screenY * 0.02}px,${screenX * 0.01}px)`,
         }}>
         <img src={CloudPng} alt="Cloud PokeBall" />
       </div>

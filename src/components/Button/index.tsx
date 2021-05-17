@@ -4,17 +4,17 @@ import cn from 'classnames';
 import style from './Button.module.scss';
 
 export enum Width {
-  Default,
+  Default = 'normalsize',
   Fullsize = 'fullsize',
 }
 
 export enum Color {
-  Green,
+  Green = 'green',
   Yellow = 'yellow',
 }
 
 export enum Size {
-  Default,
+  Default = 'normal',
   Small = 'small',
 }
 
@@ -28,7 +28,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = (props) => {
   const { width = Width.Default, color = Color.Green, size = Size.Default, children, onClick } = props;
 
-  const className = cn(style.root, width ? style[width] : '', color ? style[color] : '', size ? style[size] : '');
+  const className = cn(style.root, style[width], style[color], style[size]);
 
   return (
     <button type="button" className={className} onClick={onClick}>
