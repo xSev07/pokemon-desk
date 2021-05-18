@@ -4,8 +4,8 @@ import cn from 'classnames';
 import style from './Button.module.scss';
 
 export enum ButtonType {
-  Type1 = 'type1',
-  Type2 = 'type2',
+  TYPE1 = 'type1',
+  TYPE2 = 'type2',
 }
 
 interface ButtonProps {

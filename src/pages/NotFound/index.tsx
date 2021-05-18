@@ -1,10 +1,10 @@
 import React from 'react';
 import { navigate } from 'hookrouter';
 import Button, { ButtonType } from '../../components/Button';
+import { LinkEnum } from '../../routes';
+import TeamRocket from './assets/TeamRocket.png';
 
 import style from './NotFound.module.scss';
-
-import TeamRocket from './assets/TeamRocket.png';
 
 const NotFoundPage = () => {
   return (
@@ -16,7 +16,7 @@ const NotFoundPage = () => {
           <div className={style.subTitle}>
             <span>The rocket team</span> has won this time.
           </div>
-          <Button type={ButtonType.Type2} onClick={() => navigate('/')}>
+          <Button type={ButtonType.TYPE2} onClick={() => navigate(LinkEnum.HOME)}>
             Return
           </Button>
         </div>
