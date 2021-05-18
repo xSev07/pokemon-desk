@@ -1,6 +1,6 @@
 import React from 'react';
 import { navigate } from 'hookrouter';
-import Button, { Color } from '../../components/Button';
+import Button, { ButtonType } from '../../components/Button';
 
 import style from './NotFound.module.scss';
 
@@ -16,7 +16,7 @@ const NotFoundPage = () => {
           <div className={style.subTitle}>
             <span>The rocket team</span> has won this time.
           </div>
-          <Button color={Color.Yellow} onClick={() => navigate('/')}>
+          <Button type={ButtonType.Type2} onClick={() => navigate('/')}>
             Return
           </Button>
         </div>

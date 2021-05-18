@@ -1,4 +1,4 @@
 node_modules/
 .idea/
-**.d.ts
+*.d.ts
 !custom.d.ts
