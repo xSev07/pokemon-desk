@@ -1,6 +1,13 @@
 export interface Pokemon {
   abilities: string[];
-  stats: { [n: string]: number };
+  stats: {
+    hp: number;
+    attack: number;
+    defense: number;
+    specialAttack: number;
+    specialDefence: number;
+    speed: number;
+  };
   types: string[];
   img: string;
   name: string;
@@ -14,9 +21,17 @@ export interface Pokemon {
 
 // any временно, пока не знаю, как типизировать ответ сервера
 export const parsePokemon = (data: any): Pokemon => {
+  const { stats } = data;
   return {
     abilities: data.abilities,
-    stats: data.stats,
+    stats: {
+      hp: stats.hp,
+      attack: stats.attack,
+      defense: stats.defense,
+      specialAttack: stats['special-attack'],
+      specialDefence: stats['special-defense'],
+      speed: stats.speed,
+    },
     types: data.types,
     img: data.img,
     name: data.name,

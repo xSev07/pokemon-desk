@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import Heading, { HeadingType } from '../Heading';
 
 import style from './PokemonCard.module.scss';
@@ -10,7 +11,7 @@ interface IPokemonCard {
 
 const PokemonCard: React.FC<IPokemonCard> = (props) => {
   const { pokemon } = props;
-  const { name, stats } = pokemon;
+  const { name, stats, types, img } = pokemon;
   return (
     <div className={style.root}>
       <div className={style.infoWrap}>
@@ -28,14 +29,13 @@ const PokemonCard: React.FC<IPokemonCard> = (props) => {
           </div>
         </div>
         <div className={style.labelWrap}>
-          <span className={style.label}>Fire</span>
+          {types.map((it: string) => (
+            <span className={cn(style.label, style[it as keyof typeof style])}>{it}</span>
+          ))}
         </div>
       </div>
-      <div className={style.pictureWrap}>
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
-          alt="Charmander"
-        />
+      <div className={cn(style.pictureWrap, style[types[0] as keyof typeof style])}>
+        <img src={img} alt={name} />
       </div>
     </div>
   );
