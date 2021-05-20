@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import style from './Heading.module.scss';
 
-export enum Type {
+export enum HeadingType {
   h1 = 'h1',
   h2 = 'h2',
   h3 = 'h3',
@@ -15,7 +15,7 @@ export enum Type {
 
 interface HeadingProps {
   className?: string;
-  type: Type;
+  type: HeadingType;
 }
 
 const Heading: React.FC<HeadingProps> = (props) => {
