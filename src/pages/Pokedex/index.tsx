@@ -4,13 +4,22 @@ import style from './Pokedex.module.scss';
 import Layout from '../../components/Layout';
 import Heading, { HeadingType } from '../../components/Heading';
 import PokemonCard from '../../components/PokemonCard';
-import { pokemons } from '../../mocks/data';
-import { parsePokemons } from '../../adapters/pokemons';
+import { parsePokemons, IPokemon } from '../../adapters/pokemons';
 
-const parsedPokemons = parsePokemons(pokemons);
+interface IData {
+  data: {
+    pokemons: IPokemon[];
+    total: number;
+  };
+  isLoading: boolean;
+  isError: boolean;
+}
 
-const usePokemons = () => {
-  const [data, setData] = useState([]);
+const usePokemons = (): IData => {
+  const [data, setData] = useState({
+    total: 0,
+    pokemons: [],
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -18,38 +27,38 @@ const usePokemons = () => {
     const getPokemons = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch('http://zar.hosthot.ru/api/v1/pokemons')
+        const response = await fetch('http://zar.hosthot.ru/api/v1/pokemons');
         const result = await response.json();
 
-        setData(result);
+        setData({
+          total: result.total,
+          // @ts-ignore
+          pokemons: parsePokemons(result.pokemons),
+        });
       } catch (e) {
         setIsError(true);
       } finally {
         setIsLoading(false);
       }
-    }
+    };
 
     getPokemons();
   }, []);
   return {
-    data: {
-      ...data,
-      pokemons: parsePokemons(data.pokemons),
-    },
+    data,
     isLoading,
     isError,
-  }
-}
-
+  };
+};
 
 const PokedexPage = () => {
-  const {data, isLoading, isError} = usePokemons();
+  const { data, isLoading, isError } = usePokemons();
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
   if (isError) {
-    return <div>Error!</div>
+    return <div>Error!</div>;
   }
   return (
     <div className={style.root}>
