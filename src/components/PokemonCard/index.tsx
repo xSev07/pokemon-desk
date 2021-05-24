@@ -3,7 +3,7 @@ import cn from 'classnames';
 import Heading, { HeadingType } from '../Heading';
 
 import style from './PokemonCard.module.scss';
-import { IPokemon } from '../../adapters/pokemons';
+import { IPokemon } from '../../interface/pokemons';
 
 interface IPokemonCard {
   pokemon: IPokemon;
