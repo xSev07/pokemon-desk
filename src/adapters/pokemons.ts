@@ -1,4 +1,4 @@
-export interface Pokemon {
+export interface IPokemon {
   abilities: string[];
   stats: {
     hp: number;
@@ -20,7 +20,7 @@ export interface Pokemon {
 }
 
 // any временно, пока не знаю, как типизировать ответ сервера
-export const parsePokemon = (data: any): Pokemon => {
+export const parsePokemon = (data: any): IPokemon => {
   const { stats } = data;
   return {
     abilities: data.abilities,
@@ -44,6 +44,6 @@ export const parsePokemon = (data: any): Pokemon => {
   };
 };
 
-export const parsePokemons = (data: any): Pokemon[] => {
+export const parsePokemons = (data: any): IPokemon[] => {
   return data.map((it: any) => parsePokemon(it));
 };
