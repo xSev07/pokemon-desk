@@ -4,7 +4,7 @@ import style from './Pokedex.module.scss';
 import Layout from '../../components/Layout';
 import Heading, { HeadingType } from '../../components/Heading';
 import PokemonCard from '../../components/PokemonCard';
-// import useDebounce from '../../hook/useDebounce';
+import useDebounce from '../../hook/useDebounce';
 import useData from '../../hook/getData';
 import { IPokemons } from '../../interface/pokemons';
 import { parsePokemons } from '../../adapters/pokemons';
@@ -15,11 +15,11 @@ interface IQuery {
 
 const PokedexPage = () => {
   const [searchValue, setSearchValue] = useState<string>('');
+  const debouncedValue = useDebounce(searchValue, 500);
   const [query, setQuery] = useState<IQuery>({});
-  const { data, isLoading, isError } = useData<IPokemons>('getPokemons', query, [searchValue]);
-  const parsedPokemons = data && parsePokemons(data.pokemons);
+  const { data, isLoading, isError } = useData<IPokemons>('getPokemons', query, [debouncedValue]);
 
-  // const debouncedValue = useDebounce();
+  const parsedPokemons = data && parsePokemons(data.pokemons);
 
   const handleSearchChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(evt.target.value);
