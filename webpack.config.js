@@ -5,7 +5,7 @@ const NODE_ENV = process.env.NODE_ENV;
 
 module.exports = {
   mode: NODE_ENV || 'development',
-  entry: path.resolve(__dirname, 'src/index.tsx'),
+  entry: path.resolve(__dirname, 'src/index.ts'),
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },

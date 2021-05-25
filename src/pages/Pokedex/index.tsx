@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-
-import style from './Pokedex.module.scss';
+import { navigate } from 'hookrouter';
 import Layout from '../../components/Layout';
 import Heading, { HeadingType } from '../../components/Heading';
 import PokemonCard from '../../components/PokemonCard';
@@ -8,6 +7,9 @@ import useDebounce from '../../hook/useDebounce';
 import useData from '../../hook/getData';
 import { IPokemons } from '../../interface/pokemons';
 import { parsePokemons } from '../../adapters/pokemons';
+import { LinkEnum } from '../../routes';
+
+import style from './Pokedex.module.scss';
 
 interface IQuery {
   name?: string;
@@ -27,6 +29,10 @@ const PokedexPage = () => {
       ...state,
       name: evt.target.value,
     }));
+  };
+
+  const handleCardClick = (id: number) => {
+    navigate(LinkEnum.POKEMON.replace(':id', String(id)));
   };
 
   if (isLoading) {
@@ -50,7 +56,10 @@ const PokedexPage = () => {
         />
         filters
         <div className={style.pokemonList}>
-          {parsedPokemons && parsedPokemons.map((it) => <PokemonCard pokemon={it} />)}
+          {parsedPokemons &&
+            parsedPokemons.map((it) => (
+              <PokemonCard key={it.id} pokemon={it} onCardClick={() => handleCardClick(it.id)} />
+            ))}
         </div>
         pagination
       </Layout>
