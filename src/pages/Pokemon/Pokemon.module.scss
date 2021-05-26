@@ -18,10 +18,11 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  flex-direction: column;
+  font-size: 16px;
+  line-height: 19px;
 }
 
-.row {
+.header {
   display: flex;
   justify-content: space-between;
 }
@@ -34,4 +35,22 @@
   font-size: 24px;
   line-height: 30px;
   color: $white;
+}
+
+.id {
+  width: 41px;
+  height: 41px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: $button-secondary;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  background: $white;
+  box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
+  border-radius: 8px;
 }

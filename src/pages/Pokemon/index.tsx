@@ -10,7 +10,7 @@ export interface PokemonProps {
 
 const mockPockemon: any = {
   abilities: ['blaze', 'solar-power'],
-  base_experience: 240,
+  exp: 240,
   height: 17,
   id: 6,
   img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png',
@@ -24,7 +24,8 @@ const mockPockemon: any = {
 
 const Pokemon: React.FC<PokemonProps> = (props) => {
   const { id } = props;
-  const { img, name } = mockPockemon;
+  const { img, name, exp, abilities, stats, types } = mockPockemon;
+  const { hp, attack, defense, specialAttack, specialDefense } = stats;
   return (
     <div className={style.root}>
       <Layout className={style.contentWrap}>
@@ -32,45 +33,49 @@ const Pokemon: React.FC<PokemonProps> = (props) => {
           <img src={img} alt={name} />
         </div>
         <p>
-          <span>Grass</span>
-          <span>Poison</span>
+          {types.map((it: string) => (
+            <span>{it}</span>
+          ))}
         </p>
         <div className={style.stats}>
-          <div className={style.row}>
+          <div className={style.header}>
             <Heading type={HeadingType.h3} className={style.name}>
               {name}
             </Heading>
             <p className={style.generation}>Generation 1</p>
-            <p>{id}</p>
+            <div className={style.id}>{id}</div>
           </div>
-          <div>Abilities Overgrow - Chlorophyll</div>
-          <div>
+          <div className={style.row}>
+            <p>Abilities</p>
+            {abilities.join(' - ')}
+          </div>
+          <div className={style.row}>
             <p>
               Healthy Points
               <br />
-              <span>1 000 000</span>
+              <span>{hp}</span>
             </p>
             <p>
               Experience
               <br />
-              <span>1 000 000</span>
+              <span>{exp}</span>
             </p>
           </div>
-          <div>
+          <div className={style.row}>
             <div>
-              <p>49</p>
+              <p>{defense}</p>
               <p>Defence</p>
             </div>
             <div>
-              <p>165</p>
+              <p>{attack}</p>
               <p>Attack</p>
             </div>
             <div>
-              <p>130</p>
+              <p>{specialAttack}</p>
               <p>Sp Attack</p>
             </div>
             <div>
-              <p>271</p>
+              <p>{specialDefense}</p>
               <p>Sp Defense</p>
             </div>
           </div>
