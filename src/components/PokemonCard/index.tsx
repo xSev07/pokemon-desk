@@ -7,14 +7,13 @@ import { IPokemon } from '../../interface/pokemons';
 
 interface IPokemonCard {
   pokemon: IPokemon;
-  onCardClick: (arg: any) => void;
 }
 
 const PokemonCard: React.FC<IPokemonCard> = (props) => {
-  const { pokemon, onCardClick } = props;
+  const { pokemon } = props;
   const { name, stats, types, img } = pokemon;
   return (
-    <div className={style.root} onClick={onCardClick} onKeyPress={onCardClick} role="button" tabIndex={0}>
+    <div className={style.root}>
       <div className={style.infoWrap}>
         <Heading type={HeadingType.h4} className={style.titleName}>
           {name}

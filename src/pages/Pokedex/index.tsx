@@ -58,7 +58,7 @@ const PokedexPage = () => {
         <div className={style.pokemonList}>
           {parsedPokemons &&
             parsedPokemons.map((it) => (
-              <PokemonCard key={it.id} pokemon={it} onCardClick={() => handleCardClick(it.id)} />
+              <PokemonCard key={it.id} pokemon={it} onClick={() => handleCardClick(it.id)} onKeyPress={() => handleCardClick(it.id)} role="button" tabIndex={0}/>
             ))}
         </div>
         pagination
