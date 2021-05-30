@@ -1,0 +1,56 @@
+@import '../../variables';
+
+.root {
+  display: block;
+}
+
+.contentWrap {
+  display: flex;
+  background: linear-gradient(180deg, #732119 42.19%, #d93e30 100%);
+  border-radius: 16px;
+}
+
+.pictureWrap {
+  display: block;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name {
+  color: $white;
+}
+
+.generation {
+  font-size: 24px;
+  line-height: 30px;
+  color: $white;
+}
+
+.id {
+  width: 41px;
+  height: 41px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: $button-secondary;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  background: $white;
+  box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
+  border-radius: 8px;
+}

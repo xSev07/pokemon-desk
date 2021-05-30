@@ -1,58 +1,39 @@
-import React, { useEffect, useState } from 'react';
-
-import style from './Pokedex.module.scss';
+import React, { useState } from 'react';
+import { navigate } from 'hookrouter';
 import Layout from '../../components/Layout';
 import Heading, { HeadingType } from '../../components/Heading';
 import PokemonCard from '../../components/PokemonCard';
-import { parsePokemons, IPokemon } from '../../adapters/pokemons';
-import req from '../../utils/request';
+import useDebounce from '../../hook/useDebounce';
+import useData from '../../hook/getData';
+import { IPokemons } from '../../interface/pokemons';
+import { parsePokemons } from '../../adapters/pokemons';
+import { LinkEnum } from '../../routes';
 
-interface IData {
-  data: {
-    pokemons: IPokemon[];
-    total: number;
-  };
-  isLoading: boolean;
-  isError: boolean;
+import style from './Pokedex.module.scss';
+
+interface IQuery {
+  name?: string;
 }
 
-const usePokemons = (): IData => {
-  const [data, setData] = useState({
-    total: 0,
-    pokemons: [],
-  });
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const getPokemons = async () => {
-      setIsLoading(true);
-      try {
-        const result = await req('getPokemons');
-
-        setData({
-          total: result.total,
-          // @ts-ignore
-          pokemons: parsePokemons(result.pokemons),
-        });
-      } catch (e) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getPokemons();
-  }, []);
-  return {
-    data,
-    isLoading,
-    isError,
-  };
-};
-
 const PokedexPage = () => {
-  const { data, isLoading, isError } = usePokemons();
+  const [searchValue, setSearchValue] = useState<string>('');
+  const debouncedValue = useDebounce(searchValue, 500);
+  const [query, setQuery] = useState<IQuery>({});
+  const { data, isLoading, isError } = useData<IPokemons>('getPokemons', query, [debouncedValue]);
+
+  const parsedPokemons = data && parsePokemons(data.pokemons);
+
+  const handleSearchChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(evt.target.value);
+    setQuery((state) => ({
+      ...state,
+      name: evt.target.value,
+    }));
+  };
+
+  const handleCardClick = (id: number) => {
+    navigate(LinkEnum.POKEMON.replace(':id', String(id)));
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -64,14 +45,21 @@ const PokedexPage = () => {
     <div className={style.root}>
       <Layout className={style.contentWrap}>
         <Heading type={HeadingType.h3} className={style.heading}>
-          {data.total} <strong>Pokemons</strong> for you to choose your favorite
+          {data && data.total} <strong>Pokemons</strong> for you to choose your favorite
         </Heading>
-        <input type="text" className={style.search} placeholder="Encuentra tu pokémon..." />
+        <input
+          type="text"
+          className={style.search}
+          placeholder="Encuentra tu pokémon..."
+          value={searchValue}
+          onChange={handleSearchChange}
+        />
         filters
         <div className={style.pokemonList}>
-          {data.pokemons.map((it) => (
-            <PokemonCard pokemon={it} />
-          ))}
+          {parsedPokemons &&
+            parsedPokemons.map((it) => (
+              <PokemonCard key={it.id} pokemon={it} onCardClick={() => handleCardClick(it.id)} />
+            ))}
         </div>
         pagination
       </Layout>
